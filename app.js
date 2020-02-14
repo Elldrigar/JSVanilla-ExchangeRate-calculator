@@ -7,6 +7,16 @@ const swap = document.getElementById('swap');
 
 //FETCH RATES and UPDATE the DOM
 function calculate() {
+    const currency_one = currencyEl_one.value;
+    const currency_two = currencyEl_two.value;
+
+    fetch(`https://api.exchangerate-api.com/v4/latest/${currency_one}`)
+        .then(res => res.json())
+        .then(data => {
+            // console.log(data);
+            const rate = data.rates[currency_two];
+            console.log(rate)
+        })
 
 }
 
@@ -14,6 +24,6 @@ function calculate() {
 currencyEl_one.addEventListener('change', calculate);
 amountEl_one.addEventListener('input', calculate);
 currencyEl_two.addEventListener('change', calculate);
-amountEl_otwo.addEventListener('input', calculate);
+amountEl_two.addEventListener('input', calculate);
 
 calculate();
